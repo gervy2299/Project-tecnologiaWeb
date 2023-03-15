@@ -1,14 +1,30 @@
 import { useState } from "react"
+import { useForm } from "../../hooks";
 
 
 export const LoginPage = () => {
-    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+
+    const { formState, formState: { username, password }, onInputChange, onResetForm } = useForm({
+        username: "",
+        password: "",
+        remember_me: false,
+    });
+
+    const [checked, setChecked] = useState(false)
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        formState.remember_me = checked;
+        console.log(formState);
+    }
+
     return (
         <>
             {/*    <!-- Component: Plain basic input  --> */}
             <div className="h-full mx-auto my-20 w-4/5 md:w-2/5">
                 <h1 className="text-2xl text-center font-medium">Login</h1>
-                <form action="" className="my-6 flex flex-col gap-10">
+                <form action="" className="my-6 flex flex-col gap-10" onSubmit={handleSubmit}>
                     <div className="">
                         <div className="relative">
                             <input
@@ -16,7 +32,9 @@ export const LoginPage = () => {
                                 type="text"
                                 placeholder="Tu nombre"
                                 className="peer relative h-10 w-full border-b border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-sky-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-
+                                name="username"
+                                value={username}
+                                onChange={onInputChange}
                             />
                             <label
                                 htmlFor="id-b04"
@@ -33,7 +51,9 @@ export const LoginPage = () => {
                                 type={showPassword ? "text" : "password"}
                                 placeholder="your name"
                                 className="peer relative h-10 w-full border-b border-slate-200 px-4 pr-12 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-sky-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-
+                                name="password"
+                                value={password}
+                                onChange={onInputChange}
                             />
                             <label
                                 htmlFor="id-b14"
@@ -89,7 +109,43 @@ export const LoginPage = () => {
                             )}
                         </div>
                     </div>
-                    <button className="p-2 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-sky-500 hover:bg-sky-600 focus:bg-sky-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-sky-300 disabled:bg-sky-300 disabled:shadow-none">
+                    <div className="relative flex flex-wrap items-center">
+                        <input
+                            className="w-4 h-4 transition-colors bg-white border-2 rounded appearance-none cursor-pointer peer border-slate-500 checked:border-sky-500 checked:bg-sky-200 checked:hover:border-sky-600 checked:hover:bg-sky-300 focus:outline-none checked:focus:border-sky-700 checked:focus:bg-sky-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-slate-100 disabled:bg-slate-50"
+                            type="checkbox"
+                            value={checked}
+                            checked={checked}
+                            onChange={() => setChecked(!checked)}
+                            id="id-c04"
+                        />
+                        <label
+                            className="pl-2 cursor-pointer text-slate-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400"
+                            htmlFor="id-c04"
+                        >
+                            Recuérdame
+                        </label>
+                        <svg
+                            className="absolute left-0 w-4 h-4 transition-all duration-300 -rotate-90 opacity-0 pointer-events-none top-1 fill-sky-500 stroke-sky-500 peer-checked:rotate-0 peer-checked:opacity-100 peer-hover:fill-sky-600 peer-hover:stroke-sky-600 peer-focus:fill-sky-700 peer-focus:stroke-sky-700 peer-disabled:cursor-not-allowed"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            aria-labelledby="title-01 description-01"
+                            role="graphics-symbol"
+                        >
+                            <title id="title-01">Check mark icon</title>
+                            <desc id="description-01">
+                                Check mark icon to indicate whether the radio input is checked or
+                                not.
+                            </desc>
+                            <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M12.8116 5.17568C12.9322 5.2882 13 5.44079 13 5.5999C13 5.759 12.9322 5.91159 12.8116 6.02412L7.66416 10.8243C7.5435 10.9368 7.37987 11 7.20925 11C7.03864 11 6.87501 10.9368 6.75435 10.8243L4.18062 8.42422C4.06341 8.31105 3.99856 8.15948 4.00002 8.00216C4.00149 7.84483 4.06916 7.69434 4.18846 7.58309C4.30775 7.47184 4.46913 7.40874 4.63784 7.40737C4.80655 7.406 4.96908 7.46648 5.09043 7.57578L7.20925 9.55167L11.9018 5.17568C12.0225 5.06319 12.1861 5 12.3567 5C12.5273 5 12.691 5.06319 12.8116 5.17568Z"
+                            />
+                        </svg>
+                    </div>
+                    <button type="submit" className="p-2 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-sky-500 hover:bg-sky-600 focus:bg-sky-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-sky-300 disabled:bg-sky-300 disabled:shadow-none">
                         <span>Ingresar</span>
                     </button>
                 </form>
