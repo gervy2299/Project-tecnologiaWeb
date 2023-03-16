@@ -1,10 +1,14 @@
+import Cookies from "js-cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
 import {
     onChecking,
     onLogin,
-    onLogout
+    onLogout,
+    onTimeSession
 } from '../store/auth/authSlice'
+
+
 
 export const useAuthStore = () => {
     const { status, user, errorMessage } = useSelector(state => state.auth);
@@ -33,6 +37,19 @@ export const useAuthStore = () => {
         dispatch(onLogout());
     }
 
+    const checkTimeSession = async () => {
+
+        try {
+
+            const { data } = await serviceAPI.get("/time_left");
+            //dispatch(onTimeSession(data));
+
+        } catch (error) {
+            //console.error(error);
+        }
+
+    }
+
     return {
         //propierties
         errorMessage,
@@ -42,6 +59,7 @@ export const useAuthStore = () => {
 
         //methods
         startLogin,
-        startLogout
+        startLogout,
+        checkTimeSession
     }
 }
