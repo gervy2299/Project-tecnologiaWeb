@@ -1,8 +1,13 @@
 import { useState } from "react"
 import { useForm } from "../../hooks";
+import { useAuthStore } from "../../hooks";
 
 
 export const LoginPage = () => {
+
+    const { startLogin } = useAuthStore();
+
+
     const [showPassword, setShowPassword] = useState(false);
 
     const { formState, formState: { username, password }, onInputChange, onResetForm } = useForm({
@@ -16,7 +21,7 @@ export const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         formState.remember_me = checked;
-        console.log(formState);
+        startLogin(formState);
     }
 
     return (
