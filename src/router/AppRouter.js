@@ -7,6 +7,8 @@ export const AppRouter = () => {
 
     const { status } = useAuthStore();
 
+    
+
     if (status === "checking") {
         return <p>Cargando</p>
     }

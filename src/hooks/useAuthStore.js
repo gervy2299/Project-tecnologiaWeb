@@ -11,13 +11,14 @@ export const useAuthStore = () => {
     const dispatch = useDispatch();
 
     const startLogin = async (form) => {
+
         dispatch(onChecking());
 
-
         try {
-            const { data } = await serviceAPI.post("/login", form);
+            await serviceAPI.post("/login", form);
 
-            dispatch(onLogin(data));
+            dispatch(onLogin(form));
+
 
         } catch (error) {
 

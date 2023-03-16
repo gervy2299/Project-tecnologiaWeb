@@ -1,5 +1,9 @@
+import { NavBar } from "../components"
+
 export const ServicePage = () => {
   return (
-    <div>ServicePage</div>
+    <>
+      <NavBar />
+    </>
   )
 }
