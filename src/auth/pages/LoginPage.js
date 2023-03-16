@@ -8,7 +8,6 @@ export const LoginPage = () => {
 
     const { startLogin, errorMessage } = useAuthStore();
 
-
     const [showPassword, setShowPassword] = useState(false);
 
     const { formState, formState: { username, password }, onInputChange, onResetForm } = useForm({

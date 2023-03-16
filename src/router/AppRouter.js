@@ -1,9 +1,16 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { LoginPage } from "../auth/pages";
+import { useAuthStore } from "../hooks";
 import { ServicePage } from "../serviceAPP/pages";
 
 export const AppRouter = () => {
-    const status = "not-authenticated";
+
+    const { status } = useAuthStore();
+
+    if (status === "checking") {
+        return <p>Cargando</p>
+    }
+
     return (
         <Routes>
 
