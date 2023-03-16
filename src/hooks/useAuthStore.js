@@ -28,6 +28,10 @@ export const useAuthStore = () => {
         }
     }
 
+    const startLogout = () => {
+        dispatch(onLogout());
+    }
+
     return {
         //propierties
         errorMessage,
@@ -36,6 +40,7 @@ export const useAuthStore = () => {
 
 
         //methods
-        startLogin
+        startLogin,
+        startLogout
     }
 }

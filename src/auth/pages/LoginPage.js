@@ -1,11 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import Swal from "sweetalert2";
 import { useForm } from "../../hooks";
 import { useAuthStore } from "../../hooks";
 
 
 export const LoginPage = () => {
 
-    const { startLogin } = useAuthStore();
+    const { startLogin, errorMessage } = useAuthStore();
 
 
     const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +23,21 @@ export const LoginPage = () => {
         e.preventDefault();
         formState.remember_me = checked;
         startLogin(formState);
+
+        onResetForm();
     }
+
+    useEffect(() => {
+        if (errorMessage !== undefined) {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: errorMessage,
+            })
+        }
+    }, [errorMessage])
+
 
     return (
         <>
