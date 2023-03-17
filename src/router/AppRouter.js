@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom"
 import { LoginPage } from "../auth/pages";
 import { useAuthStore } from "../hooks";
@@ -5,9 +6,13 @@ import { ServicePage } from "../serviceAPP/pages";
 
 export const AppRouter = () => {
 
-    const { status } = useAuthStore();
+    const { status, checkTimeSession } = useAuthStore();
 
-    
+    useEffect(() => {
+        checkTimeSession();
+    }, []);
+
+
 
     if (status === "checking") {
         return <p>Cargando</p>

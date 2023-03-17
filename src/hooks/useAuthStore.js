@@ -1,14 +1,11 @@
-import Cookies from "js-cookie";
+import localforage from "localforage";
 import { useSelector, useDispatch } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
 import {
     onChecking,
     onLogin,
     onLogout,
-    onTimeSession
 } from '../store/auth/authSlice'
-
-
 
 export const useAuthStore = () => {
     const { status, user, errorMessage } = useSelector(state => state.auth);
@@ -38,10 +35,12 @@ export const useAuthStore = () => {
     }
 
     const checkTimeSession = async () => {
+        const accept = localStorage.getItem("accept");
+        if (!accept) return dispatch(onLogout);
 
         try {
-
-            const { data } = await serviceAPI.get("/time_left");
+            const time = await serviceAPI.get("/time_left");
+            localforage.setItem("accept", time);
             //dispatch(onTimeSession(data));
 
         } catch (error) {
