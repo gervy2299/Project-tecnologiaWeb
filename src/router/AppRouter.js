@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom"
 import { LoginPage } from "../auth/pages";
 import { useAuthStore } from "../hooks";
@@ -8,14 +7,13 @@ export const AppRouter = () => {
 
     const { status, checkTimeSession } = useAuthStore();
 
-    useEffect(() => {
-        checkTimeSession();
-    }, []);
-
-
 
     if (status === "checking") {
         return <p>Cargando</p>
+    }
+
+    if (status === "authenticated") {
+        checkTimeSession();
     }
 
     return (

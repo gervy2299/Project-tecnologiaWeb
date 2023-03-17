@@ -1,4 +1,3 @@
-import localforage from "localforage";
 import { useSelector, useDispatch } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
 import {
@@ -35,12 +34,11 @@ export const useAuthStore = () => {
     }
 
     const checkTimeSession = async () => {
-        const accept = localStorage.getItem("accept");
-        if (!accept) return dispatch(onLogout);
+
 
         try {
             const time = await serviceAPI.get("/time_left");
-            localforage.setItem("accept", time);
+            console.log(time);
             //dispatch(onTimeSession(data));
 
         } catch (error) {
