@@ -12,11 +12,9 @@ export const AppRouter = () => {
         checkSession();
     }, []);
 
-    if (status === "checking" && session === false) {
+    if (status === "checking") {
         return <p>Cargando</p>
     }
-
-
 
 
     return (
