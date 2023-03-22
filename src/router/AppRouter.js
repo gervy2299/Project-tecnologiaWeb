@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom"
 import { LoginPage } from "../auth/pages";
 import { useAuthStore } from "../hooks";
@@ -5,21 +6,23 @@ import { ServicePage } from "../serviceAPP/pages";
 
 export const AppRouter = () => {
 
-    const { status, checkTimeSession } = useAuthStore();
+    const { status, session, checkSession } = useAuthStore();
 
+    useEffect(() => {
+        checkSession();
+    }, []);
 
-    if (status === "checking") {
+    if (status === "checking" && session === false) {
         return <p>Cargando</p>
     }
 
-    if (status === "authenticated") {
-        checkTimeSession();
-    }
+
+
 
     return (
         <Routes>
 
-            {status === "not-authenticated" ? (
+            {status === "not-authenticated" && session === false ? (
                 <>
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/*" element={<Navigate to={"/login"} />} />

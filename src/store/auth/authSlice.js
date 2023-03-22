@@ -4,7 +4,7 @@ const initialState = {
     status: "not-authenticated",
     user: {},
     errorMessage: undefined,
-    timeSession: 0,
+    session: false,
 }
 
 export const authSlice = createSlice({
@@ -26,16 +26,19 @@ export const authSlice = createSlice({
 
         },
 
-        onTimeSession: (state, { payload }) => {
-            state.timeSession = payload;
+        onSession: (state, { payload }) => {
+            state.session = payload;
         },
 
         onLogout: (state, { payload }) => {
             state.status = "not-authenticated";
             state.user = {};
             state.errorMessage = payload;
+            state.session = false;
 
         },
+
+
     }
 });
 
@@ -43,5 +46,5 @@ export const {
     onChecking,
     onLogin,
     onLogout,
-    onTimeSession
+    onSession
 } = authSlice.actions
