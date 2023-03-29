@@ -4,7 +4,6 @@ import {
     onChecking,
     onLogin,
     onLogout,
-    onSession
 } from '../store/auth/authSlice'
 
 export const useAuthStore = () => {
@@ -16,13 +15,9 @@ export const useAuthStore = () => {
         dispatch(onChecking());
 
         try {
-            await serviceAPI.post("/session/login", form);
+            const { data } = await serviceAPI.post("/session/login", form);
+            localStorage.setItem("token", data.token);
             dispatch(onLogin(form));
-
-            const time = await serviceAPI.get("/users");
-            localStorage.setItem("session", time.data.anonymous);
-            dispatch(onSession(time.data.anonymous));
-
 
         } catch (error) {
 
@@ -36,17 +31,16 @@ export const useAuthStore = () => {
 
     const checkSession = async () => {
 
-        const session = localStorage.getItem("session");
-        if (!session) return dispatch(onLogout());
+        const token = localStorage.getItem("token");
+        if (!token) return dispatch(onLogout());
 
         try {
-            const time = await serviceAPI.get("/users");
-            localStorage.setItem("session", time.data.anonymous);
-            dispatch(onLogin({ username: time.data.username }));
-            dispatch(onSession(time.data.anonymous));
+            const { data } = await serviceAPI.get("/users");
+            localStorage.getItem("token");
+            dispatch(onLogin({ username: data.username, uuid: data.uuid }));
 
         } catch (error) {
-            localStorage.removeItem("session");
+            localStorage.removeItem("token");
             dispatch(onLogout());
             console.error(error);
         }
@@ -55,7 +49,7 @@ export const useAuthStore = () => {
 
 
     const startLogout = () => {
-        localStorage.removeItem("session");
+        localStorage.removeItem("token");
         dispatch(onLogout());
     }
 

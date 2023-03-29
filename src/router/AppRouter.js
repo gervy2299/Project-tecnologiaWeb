@@ -6,7 +6,7 @@ import { ServicePage } from "../serviceAPP/pages";
 
 export const AppRouter = () => {
 
-    const { status, session, checkSession } = useAuthStore();
+    const { status, checkSession } = useAuthStore();
 
     useEffect(() => {
         checkSession();
@@ -20,7 +20,7 @@ export const AppRouter = () => {
     return (
         <Routes>
 
-            {status === "not-authenticated" && session === false ? (
+            {status === "not-authenticated" ? (
                 <>
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/*" element={<Navigate to={"/login"} />} />
