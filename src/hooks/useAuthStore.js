@@ -4,10 +4,11 @@ import {
     onChecking,
     onLogin,
     onLogout,
+    onTimeSession,
 } from '../store/auth/authSlice'
 
 export const useAuthStore = () => {
-    const { status, user, errorMessage, session } = useSelector(state => state.auth);
+    const { status, user, errorMessage } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     const startLogin = async (form) => {
@@ -18,6 +19,13 @@ export const useAuthStore = () => {
             const { data } = await serviceAPI.post("/session/login", form);
             localStorage.setItem("token", data.token);
             dispatch(onLogin(form));
+
+            const token = localStorage.getItem("token");
+            if (token) {
+
+                const { data } = await serviceAPI.get("/session/ttl");
+                dispatch(onTimeSession(data));
+            }
 
         } catch (error) {
 
@@ -47,6 +55,19 @@ export const useAuthStore = () => {
 
     }
 
+    const checkTimeSession = async () => {
+
+        const token = localStorage.getItem("token");
+        if (!token) return dispatch(onLogout());
+
+        try {
+            const { data } = await serviceAPI.get("/session/ttl");
+            dispatch(onTimeSession(data));
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     const startLogout = () => {
         localStorage.removeItem("token");
@@ -59,12 +80,12 @@ export const useAuthStore = () => {
         errorMessage,
         status,
         user,
-        session,
 
 
         //methods
         startLogin,
         startLogout,
-        checkSession
+        checkSession,
+        checkTimeSession
     }
 }

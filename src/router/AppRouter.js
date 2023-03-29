@@ -6,10 +6,11 @@ import { ServicePage } from "../serviceAPP/pages";
 
 export const AppRouter = () => {
 
-    const { status, checkSession } = useAuthStore();
+    const { status, checkSession, checkTimeSession } = useAuthStore();
 
     useEffect(() => {
         checkSession();
+        checkTimeSession();
     }, []);
 
     if (status === "checking") {
