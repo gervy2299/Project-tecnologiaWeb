@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-
+    listChecks: [],
+    activeCheck: null,
+    errorMessage: undefined,
 }
 
 export const serviceSlice = createSlice({
@@ -9,10 +11,10 @@ export const serviceSlice = createSlice({
     initialState,
     reducers: {
 
-        contador: (state, { payload }) => {
-
+        onErrorEvent: (state, { payload }) => {
+            state.errorMessage = payload;
         }
     }
 });
 
-export const { contador } = serviceSlice.actions
+export const { onErrorEvent } = serviceSlice.actions
