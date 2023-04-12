@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
 import { onErrorEvent } from "../store/service/serviceSlice";
 
 export const useServiceStore = () => {
 
     const dispatch = useDispatch();
+    const { listChecks, activeCheck } = useSelector(state => state.service);
 
 
     const createNewCheck = async () => {
@@ -27,6 +28,8 @@ export const useServiceStore = () => {
 
     return {
         //propierties
+        listChecks,
+        activeCheck,
 
 
         //methods

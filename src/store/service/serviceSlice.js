@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    listChecks: [],
+    listChecks: [{ id: "asx", name: "Gerson" }, { id: "asdxc", name: "Maylin" }],
     activeCheck: null,
     errorMessage: undefined,
 }
