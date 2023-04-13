@@ -1,14 +1,24 @@
+import { useEffect } from "react";
 import { useServiceStore } from "../../hooks"
-import { NavBar } from "../components"
+import { CardServiceCheck, NavBar } from "../components"
 
 export const ServicePage = () => {
 
-  const { listChecks } = useServiceStore();
+  const { getCheckLists } = useServiceStore();
+
+  useEffect(() => {
+
+    getCheckLists();
+
+  }, []);
+
 
   return (
     <>
       <NavBar />
-      <p>{JSON.stringify(listChecks)}</p>
+      <CardServiceCheck />
     </>
   )
 }
+
+

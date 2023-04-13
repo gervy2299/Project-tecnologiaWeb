@@ -22,3 +22,21 @@ code {
   max-width: 1400px;
   margin: 0 auto;
 }
+
+img {
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.world {
+  width: 3rem;
+  height: 3rem;
+}
+
+@media (min-width: 768px) {
+  .world {
+    width: 4rem;
+    height: 4rem;
+  }
+}

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
-import { onErrorEvent } from "../store/service/serviceSlice";
+import { onErrorEvent, onSetCheckList } from "../store/service/serviceSlice";
 
 export const useServiceStore = () => {
 
@@ -25,7 +25,8 @@ export const useServiceStore = () => {
     const getCheckLists = async (currentPage) => {
         console.log(currentPage);
         try {
-            const res = await serviceAPI.get(`/?page_size=20&page_number=0`);
+            const { data } = await serviceAPI.get(`/checks?page_size=20&page_number=1`);
+            dispatch(onSetCheckList(data.data));
 
         } catch (error) {
             console.error(error);
