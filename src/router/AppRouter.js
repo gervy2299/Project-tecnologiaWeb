@@ -9,9 +9,16 @@ export const AppRouter = () => {
     const { status, checkSession, checkTimeSession } = useAuthStore();
 
     useEffect(() => {
+
         checkSession();
-        checkTimeSession();
     }, []);
+
+    useEffect(() => {
+        checkTimeSession();
+
+    }, [])
+
+
 
     if (status === "checking") {
         return <p>Cargando</p>
