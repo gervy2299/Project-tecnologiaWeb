@@ -22,8 +22,14 @@ export const useServiceStore = () => {
         }
     }
 
-    const getCheckLists = () => {
+    const getCheckLists = async (currentPage) => {
+        console.log(currentPage);
+        try {
+            const res = await serviceAPI.get(`/?page_size=20&page_number=0`);
 
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return {
