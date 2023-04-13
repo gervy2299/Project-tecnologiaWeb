@@ -34,20 +34,25 @@ export const CardServiceCheck = () => {
                                         </p>
                                     </div>
                                 </header>
-                                <table className="container w-full text-left border-collapse rounded w-overflow-x-auto ">
-                                    <tbody>
-                                        <tr className="border-b border-slate-300">
-                                            <th scope="col" className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100">Método</th>
-                                            <th scope="col" className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100">URL</th>
+                                <div className="overflow-x-auto">
+                                    <table className="table w-full">
 
-                                        </tr>
-                                        <tr className="border-b border-slate-200">
-                                            <td className="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500 ">{check.method}</td>
-                                            <td className="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500 ">{check.url}</td>
-                                        </tr>
+                                        <thead>
+                                            <tr>
+                                                <th>Método</th>
+                                                <th>URL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
+                                            <tr>
+
+                                                <td>{check.method}</td>
+                                                <td>{check.url}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     ))
