@@ -4,13 +4,13 @@ import { CardServiceCheck, NavBar } from "../components"
 
 export const ServicePage = () => {
 
-  const { getCheckLists } = useServiceStore();
+  const { getCheckLists, currentPage } = useServiceStore();
 
   useEffect(() => {
 
     getCheckLists();
 
-  }, []);
+  }, [currentPage]);
 
 
   return (

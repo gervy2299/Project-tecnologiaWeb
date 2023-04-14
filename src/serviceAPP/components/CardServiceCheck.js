@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { formatDate } from "../../helpers";
 import { useServiceStore } from "../../hooks"
 import internet from "../../internet.png";
+import { Pagination } from "./Pagination";
 
 export const CardServiceCheck = () => {
 
@@ -57,6 +58,7 @@ export const CardServiceCheck = () => {
                         </div>
                     ))
                 }
+                <Pagination />
 
             </main>
         </>

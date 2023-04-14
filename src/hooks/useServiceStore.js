@@ -1,11 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
-import { onErrorEvent, onSetCheckList } from "../store/service/serviceSlice";
+import {
+    onErrorEvent,
+    onNextPage,
+    onPrevPage,
+    onSetCheckList
+} from "../store/service/serviceSlice";
 
 export const useServiceStore = () => {
 
     const dispatch = useDispatch();
-    const { listChecks, activeCheck } = useSelector(state => state.service);
+    const { listChecks, activeCheck, currentPage } = useSelector(state => state.service);
+
 
 
     const createNewCheck = async () => {
@@ -22,11 +28,35 @@ export const useServiceStore = () => {
         }
     }
 
-    const getCheckLists = async (currentPage) => {
-        console.log(currentPage);
+    const getCheckLists = async () => {
         try {
-            const { data } = await serviceAPI.get(`/checks?page_size=20&page_number=1`);
+            const { data } = await serviceAPI.get(`/checks?page_size=20&page_number=${currentPage}`);
             dispatch(onSetCheckList(data.data));
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const onNextPageLists = async () => {
+
+        try {
+            dispatch(onNextPage());
+            const {data} = await serviceAPI.get(`/checks?page_size=20&page_number=${currentPage}`);
+            console.log(data);
+
+
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    const onPrevPageLists = async () => {
+
+        try {
+            dispatch(onPrevPage());
+            const {data} = await serviceAPI.get(`/checks?page_size=20&page_number=${currentPage}`);
+            console.log(data);
 
         } catch (error) {
             console.error(error);
@@ -37,10 +67,13 @@ export const useServiceStore = () => {
         //propierties
         listChecks,
         activeCheck,
+        currentPage,
 
 
         //methods
         createNewCheck,
-        getCheckLists
+        getCheckLists,
+        onPrevPageLists,
+        onNextPageLists
     }
 }
