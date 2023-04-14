@@ -15,7 +15,7 @@ export const CardServiceCheck = () => {
                     listChecks.map(check => (
 
 
-                        <div className="mt-5 overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200" key={check.id}>
+                        <div className="mt-5 mb-10 overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200" key={check.id}>
 
                             <div className="p-6">
                                 <header className="mb-4 flex gap-4">
