@@ -38,29 +38,13 @@ export const useServiceStore = () => {
         }
     }
 
-    const onNextPageLists = async () => {
+    const onNextPageLists = () => {
 
-        try {
-            dispatch(onNextPage());
-            const {data} = await serviceAPI.get(`/checks?page_size=20&page_number=${currentPage}`);
-            console.log(data);
-
-
-
-        } catch (error) {
-            console.error(error);
-        }
+        dispatch(onNextPage());
     }
-    const onPrevPageLists = async () => {
+    const onPrevPageLists = () => {
 
-        try {
-            dispatch(onPrevPage());
-            const {data} = await serviceAPI.get(`/checks?page_size=20&page_number=${currentPage}`);
-            console.log(data);
-
-        } catch (error) {
-            console.error(error);
-        }
+        dispatch(onPrevPage());
     }
 
     return {

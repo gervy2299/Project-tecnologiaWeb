@@ -38,6 +38,7 @@ export const AppRouter = () => {
                 <>
                     <Route path="/" element={<ServicePage />} />
                     <Route path="/create-check" element={<FormCheck />} />
+                    <Route path="/page/:page" element={<ServicePage />} />
                     <Route path="/*" element={<Navigate to={"/"} />} />
                 </>)}
         </Routes>
