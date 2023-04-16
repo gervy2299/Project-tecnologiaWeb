@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useServiceStore } from "../../hooks"
-import { CardServiceCheck, NavBar } from "../components"
+import { Breadcrumbs, CardServiceCheck, NavBar } from "../components"
 
 export const ServicePage = () => {
 
@@ -16,6 +16,7 @@ export const ServicePage = () => {
   return (
     <>
       <NavBar />
+      <Breadcrumbs />
       <CardServiceCheck />
     </>
   )
