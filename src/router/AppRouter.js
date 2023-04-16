@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import { LoginPage } from "../auth/pages";
 import { useAuthStore } from "../hooks";
 import { ServicePage } from "../serviceAPP/pages";
-import { FormCheck } from "../serviceAPP/components";
+import { FormCheck, ServiceCheck } from "../serviceAPP/components";
 
 export const AppRouter = () => {
 
@@ -38,7 +38,7 @@ export const AppRouter = () => {
                 <>
                     <Route path="/" element={<ServicePage />} />
                     <Route path="/create-check" element={<FormCheck />} />
-                    <Route path="/page/:page" element={<ServicePage />} />
+                    <Route path="/check/:id" element={<ServiceCheck />} />
                     <Route path="/*" element={<Navigate to={"/"} />} />
                 </>)}
         </Routes>

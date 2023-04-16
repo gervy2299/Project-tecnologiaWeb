@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
 import {
+    onActiveCheck,
     onClickPage,
+    onDeleteCheck,
     onErrorEvent,
     onNextPage,
     onPrevPage,
@@ -39,19 +41,35 @@ export const useServiceStore = () => {
         }
     }
 
-    const onNextPageLists = () => {
+    const deleteCheck = async (id) => {
 
-        dispatch(onNextPage());
-    }
-    const onPrevPageLists = () => {
+        try {
+            await serviceAPI.delete(`/checks/${id}`);
+            dispatch(onDeleteCheck(id));
 
-        dispatch(onPrevPage());
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    const onClickNumberPage = (page) => {
-        console.log(page);
-        dispatch(onClickPage(page));
+    const onSetActiveCheck = async (id) => {
+
+        const { data } = await serviceAPI.get(`/checks?page_size=20&page_number=${currentPage}`);
+        const activeCheck = data.data.find(check => check.id === id);
+        dispatch(onActiveCheck(activeCheck));
     }
+
+    const onNextPageLists = () => dispatch(onNextPage());
+
+    const onPrevPageLists = () => dispatch(onPrevPage());
+
+
+    const onClickNumberPage = (page) => dispatch(onClickPage(page));
+
+
+
+
+
 
     return {
         //propierties
@@ -65,6 +83,8 @@ export const useServiceStore = () => {
         getCheckLists,
         onPrevPageLists,
         onNextPageLists,
-        onClickNumberPage
+        onClickNumberPage,
+        onSetActiveCheck,
+        deleteCheck
     }
 }

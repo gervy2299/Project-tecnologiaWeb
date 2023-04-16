@@ -27,7 +27,7 @@ export const CardServiceCheck = () => {
                                         className="max-w-full rounded-full world"
                                     />
                                     <div>
-                                        <Link className="text-xl font-medium text-slate-700">
+                                        <Link to={`/check/${check.id}`} className="text-xl font-medium text-slate-700">
                                             {check.name}
                                         </Link>
                                         <p className="text-sm text-slate-400">

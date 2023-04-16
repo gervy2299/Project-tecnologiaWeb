@@ -26,6 +26,12 @@ export const serviceSlice = createSlice({
         },
         onClickPage: (state, { payload }) => {
             state.currentPage = payload;
+        },
+        onActiveCheck: (state, { payload }) => {
+            state.activeCheck = payload;
+        },
+        onDeleteCheck: (state, { payload }) => {
+            state.listChecks = state.listChecks.filter(check => check.id !== payload);
         }
 
     }
@@ -36,5 +42,7 @@ export const {
     onSetCheckList,
     onNextPage,
     onPrevPage,
-    onClickPage
+    onClickPage,
+    onActiveCheck,
+    onDeleteCheck
 } = serviceSlice.actions

@@ -1,11 +1,9 @@
-import { Breadcrumbs } from "./Breadcrumbs"
-import { NavBar } from "./NavBar"
+import { BasicTemplate } from "./BasicTemplate"
 
 export const FormCheck = () => {
   return (
     <>
-      <NavBar />
-      <Breadcrumbs />
+      <BasicTemplate />
       <main className="container mx-auto">
         <p>pagina para crear nuevo check</p>
       </main>
