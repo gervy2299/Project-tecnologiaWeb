@@ -23,6 +23,9 @@ export const serviceSlice = createSlice({
         },
         onPrevPage: (state, { payload }) => {
             state.currentPage = state.currentPage === 1 ? 1 : state.currentPage - 1;
+        },
+        onClickPage: (state, { payload }) => {
+            state.currentPage = payload;
         }
 
     }
@@ -32,5 +35,6 @@ export const {
     onErrorEvent,
     onSetCheckList,
     onNextPage,
-    onPrevPage
+    onPrevPage,
+    onClickPage
 } = serviceSlice.actions

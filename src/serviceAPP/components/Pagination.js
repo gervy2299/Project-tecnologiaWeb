@@ -1,9 +1,10 @@
-import { NavLink } from "react-router-dom"
 import { useServiceStore } from "../../hooks/useServiceStore"
 
 export const Pagination = () => {
 
-    const { onNextPageLists, onPrevPageLists, currentPage } = useServiceStore();
+    const { onNextPageLists, onPrevPageLists, currentPage, onClickNumberPage } = useServiceStore();
+
+
 
     return (
         <>
@@ -42,8 +43,8 @@ export const Pagination = () => {
                     </li>
 
                     <li>
-                        <NavLink
-
+                        <button
+                            onClick={() => onClickNumberPage(1)}
                             aria-label="Goto Page 1"
                             className={currentPage === 1 ?
                                 'hidden h-10 items-center justify-center whitespace-nowrap bg-blue-500 px-4 text-sm font-medium text-white ring-offset-2 transition duration-300 hover:bg-blue-600 hover:stroke-blue-500 focus:bg-blue-700 focus-visible:outline-none md:inline-flex'
@@ -52,11 +53,11 @@ export const Pagination = () => {
 
                         >
                             1
-                        </NavLink>
+                        </button>
                     </li>
                     <li>
-                        <NavLink
-
+                        <button
+                            onClick={() => onClickNumberPage(2)}
                             aria-label="Goto Page 2"
                             className={currentPage === 2 ?
                                 'hidden h-10 items-center justify-center whitespace-nowrap bg-blue-500 px-4 text-sm font-medium text-white ring-offset-2 transition duration-300 hover:bg-blue-600 hover:stroke-blue-500 focus:bg-blue-700 focus-visible:outline-none md:inline-flex'
@@ -64,10 +65,11 @@ export const Pagination = () => {
                                 'hidden h-10 items-center justify-center stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-blue-50 hover:stroke-blue-500 hover:text-blue-500 focus:bg-blue-50 focus:stroke-blue-600 focus:text-blue-600 focus-visible:outline-none md:inline-flex'}
                         >
                             2
-                        </NavLink>
+                        </button>
                     </li>
                     <li>
-                        <NavLink
+                        <button
+                            onClick={() => onClickNumberPage(3)}
                             aria-label="Current Page, Page 3"
                             aria-current="true"
                             className={currentPage === 3 ?
@@ -76,11 +78,11 @@ export const Pagination = () => {
                                 'hidden h-10 items-center justify-center stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-blue-50 hover:stroke-blue-500 hover:text-blue-500 focus:bg-blue-50 focus:stroke-blue-600 focus:text-blue-600 focus-visible:outline-none md:inline-flex'}
                         >
                             3
-                        </NavLink>
+                        </button>
                     </li>
                     <li>
-                        <NavLink
-
+                        <button
+                            onClick={() => onClickNumberPage(4)}
                             aria-label="Goto Page 4"
                             className={currentPage === 4 ?
                                 'hidden h-10 items-center justify-center whitespace-nowrap bg-blue-500 px-4 text-sm font-medium text-white ring-offset-2 transition duration-300 hover:bg-blue-600 hover:stroke-blue-500 focus:bg-blue-700 focus-visible:outline-none md:inline-flex'
@@ -88,11 +90,11 @@ export const Pagination = () => {
                                 'hidden h-10 items-center justify-center stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-blue-50 hover:stroke-blue-500 hover:text-blue-500 focus:bg-blue-50 focus:stroke-blue-600 focus:text-blue-600 focus-visible:outline-none md:inline-flex'}
                         >
                             4
-                        </NavLink>
+                        </button>
                     </li>
                     <li>
-                        <NavLink
-
+                        <button
+                            onClick={() => onClickNumberPage(5)}
                             aria-label="Goto Page 5"
                             className={currentPage === 5 ?
                                 'hidden h-10 items-center justify-center whitespace-nowrap bg-blue-500 px-4 text-sm font-medium text-white ring-offset-2 transition duration-300 hover:bg-blue-600 hover:stroke-blue-500 focus:bg-blue-700 focus-visible:outline-none md:inline-flex'
@@ -100,7 +102,7 @@ export const Pagination = () => {
                                 'hidden h-10 items-center justify-center stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-blue-50 hover:stroke-blue-500 hover:text-blue-500 focus:bg-blue-50 focus:stroke-blue-600 focus:text-blue-600 focus-visible:outline-none md:inline-flex'}
                         >
                             5
-                        </NavLink>
+                        </button>
                     </li>
                     <li>
                         <button

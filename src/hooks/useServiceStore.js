@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
 import {
+    onClickPage,
     onErrorEvent,
     onNextPage,
     onPrevPage,
@@ -47,6 +48,11 @@ export const useServiceStore = () => {
         dispatch(onPrevPage());
     }
 
+    const onClickNumberPage = (page) => {
+        console.log(page);
+        dispatch(onClickPage(page));
+    }
+
     return {
         //propierties
         listChecks,
@@ -58,6 +64,7 @@ export const useServiceStore = () => {
         createNewCheck,
         getCheckLists,
         onPrevPageLists,
-        onNextPageLists
+        onNextPageLists,
+        onClickNumberPage
     }
 }
