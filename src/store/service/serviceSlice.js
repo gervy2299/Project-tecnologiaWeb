@@ -5,6 +5,7 @@ const initialState = {
     activeCheck: null,
     errorMessage: undefined,
     currentPage: 1,
+    events: [],
 }
 
 export const serviceSlice = createSlice({
@@ -32,6 +33,10 @@ export const serviceSlice = createSlice({
         },
         onDeleteCheck: (state, { payload }) => {
             state.listChecks = state.listChecks.filter(check => check.id !== payload);
+        },
+
+        onSetEvents: (state, { payload }) => {
+            state.events = payload;
         }
 
     }
@@ -44,5 +49,6 @@ export const {
     onPrevPage,
     onClickPage,
     onActiveCheck,
-    onDeleteCheck
+    onDeleteCheck,
+    onSetEvents
 } = serviceSlice.actions

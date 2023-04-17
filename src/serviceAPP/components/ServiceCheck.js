@@ -9,10 +9,11 @@ import Swal from "sweetalert2";
 export const ServiceCheck = () => {
 
     const { id } = useParams();
-    const { onSetActiveCheck, deleteCheck, activeCheck } = useServiceStore();
+    const { onSetActiveCheck, onSetEvents, deleteCheck, activeCheck } = useServiceStore();
     useEffect(() => {
 
         onSetActiveCheck(Number(id));
+        onSetEvents(id);
 
     }, [id]);
 

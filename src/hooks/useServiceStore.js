@@ -54,10 +54,34 @@ export const useServiceStore = () => {
 
     const onSetActiveCheck = async (id) => {
 
-        const { data } = await serviceAPI.get(`/checks?page_size=20&page_number=${currentPage}`);
-        const activeCheck = data.data.find(check => check.id === id);
-        dispatch(onActiveCheck(activeCheck));
+        try {
+
+            const { data } = await serviceAPI.get(`/checks?page_size=20&page_number=${currentPage}`);
+            const activeCheck = data.data.find(check => check.id === id);
+            dispatch(onActiveCheck(activeCheck));
+        } catch (error) {
+            console.error(error);
+        }
     }
+
+    const onSetEvents = async (id) => {
+        const rangeData = {
+            after: null,
+            before: null
+        }
+
+        try {
+
+            const res = await serviceAPI.get(`/event/2`, rangeData);
+            console.log(res);
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+
+
 
     const onNextPageLists = () => dispatch(onNextPage());
 
@@ -85,6 +109,7 @@ export const useServiceStore = () => {
         onNextPageLists,
         onClickNumberPage,
         onSetActiveCheck,
-        deleteCheck
+        deleteCheck,
+        onSetEvents
     }
 }
