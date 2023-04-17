@@ -66,17 +66,17 @@ export const useServiceStore = () => {
 
     const onSetEvents = async (id) => {
         const rangeData = {
-            after: null,
-            before: null
+            "after": null,
+            "before": null
         }
 
-        try {
+       /*  try {
 
-            const res = await serviceAPI.get(`/event/2`, rangeData);
+            const res = await serviceAPI.get(`/event/${id}`, rangeData);
             console.log(res);
         } catch (error) {
             console.error(error);
-        }
+        } */
 
     }
 

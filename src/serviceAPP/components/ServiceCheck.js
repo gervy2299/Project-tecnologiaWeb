@@ -5,6 +5,7 @@ import internet from "../../internet.png";
 import { formatDate } from "../../helpers";
 import { BasicTemplate } from "./BasicTemplate";
 import Swal from "sweetalert2";
+import { ChartCheck } from "./ChartCheck";
 
 export const ServiceCheck = () => {
 
@@ -92,8 +93,8 @@ export const ServiceCheck = () => {
                                     </tbody>
                                 </table>
                             </div>
-
-                            <div className="flex justify-end items-end">
+                            <ChartCheck />
+                            <div className="my-6 flex justify-end items-end">
                                 <button onClick={handleDeleteCheck}
                                     className="h-10 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-red-500 hover:bg-red-600 focus:bg-red-700 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300 disabled:shadow-none">
                                     <span>Eliminar</span>
