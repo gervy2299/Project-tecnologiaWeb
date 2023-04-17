@@ -11,7 +11,7 @@ export const Pagination = () => {
             <nav
                 role="navigation"
                 aria-label="Pagination Navigation"
-                className="mt-5 flex items-center justify-center overflow-hidden rounded shadow-md shadow-slate-200"
+                className="my-5 flex items-center justify-center overflow-hidden rounded shadow-md shadow-slate-200"
             >
                 <ul className="flex list-none items-center justify-center text-sm text-slate-700 md:gap-1">
                     <li>
