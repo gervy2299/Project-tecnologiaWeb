@@ -1,5 +1,4 @@
 import { Line } from 'react-chartjs-2'
-import { DataCheck } from '../../helpers';
 import { formTime } from '../../helpers/formTime';
 
 import {
@@ -13,6 +12,7 @@ import {
     Legend,
     Filler
 } from 'chart.js';
+import { useServiceStore } from '../../hooks/useServiceStore';
 
 ChartJs.register(
     CategoryScale,
@@ -26,8 +26,11 @@ ChartJs.register(
 )
 
 export const ChartCheck = () => {
-    const labels = DataCheck.map(time => formTime(time.event_timestamp));
-    const latency = DataCheck.map(lt => lt.latency);
+
+    const { events } = useServiceStore();
+
+    const labels = events.map(time => formTime(time.event_timestamp));
+    const latency = events.map(lt => lt.latency);
     const data = {
         labels: labels,
         datasets: [{

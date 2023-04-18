@@ -13,7 +13,7 @@ import {
 export const useServiceStore = () => {
 
     const dispatch = useDispatch();
-    const { listChecks, activeCheck, currentPage } = useSelector(state => state.service);
+    const { listChecks, activeCheck, currentPage, events } = useSelector(state => state.service);
 
 
 
@@ -65,18 +65,18 @@ export const useServiceStore = () => {
     }
 
     const onSetEvents = async (id) => {
-        const rangeData = {
+        /* const rangeData = {
             "after": null,
             "before": null
-        }
-
-       /*  try {
-
-            const res = await serviceAPI.get(`/event/${id}`, rangeData);
-            console.log(res);
-        } catch (error) {
-            console.error(error);
         } */
+
+        /*  try {
+ 
+             const res = await serviceAPI.get(`/event/${id}`, rangeData);
+             console.log(res);
+         } catch (error) {
+             console.error(error);
+         } */
 
     }
 
@@ -100,6 +100,7 @@ export const useServiceStore = () => {
         listChecks,
         activeCheck,
         currentPage,
+        events,
 
 
         //methods

@@ -41,5 +41,51 @@ export const DataCheck =
                 "http_version": "HTTP/2.0",
                 "body": null
             }
-        }]
+        },
+
+        {
+            "event_type": "Success",
+            "event_timestamp": "2023-04-17T23:01:16.947524+00:00",
+            "status": "Up",
+            "response_code": 200,
+            "latency": 183,
+            "extra": {
+                "status_text": "OK",
+                "remote_ip": "172.67.183.201",
+                "content_length": null,
+                "http_version": "HTTP/2.0",
+                "body": null
+            }
+        },
+
+        {
+            "event_type": "Success",
+            "event_timestamp": "2023-04-17T23:02:16.939128+00:00",
+            "status": "Up",
+            "response_code": 200,
+            "latency": 175,
+            "extra": {
+                "status_text": "OK",
+                "remote_ip": "172.67.183.201",
+                "content_length": null,
+                "http_version": "HTTP/2.0",
+                "body": null
+            }
+        },
+        {
+            "event_type": "Success",
+            "event_timestamp": "2023-04-17T23:03:16.943778+00:00",
+            "status": "Up",
+            "response_code": 200,
+            "latency": 178,
+            "extra": {
+                "status_text": "OK",
+                "remote_ip": "172.67.183.201",
+                "content_length": null,
+                "http_version": "HTTP/2.0",
+                "body": null
+            }
+        },
+
+    ]
 

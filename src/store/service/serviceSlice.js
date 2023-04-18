@@ -1,25 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { DataCheck } from '../../helpers';
 
 const initialState = {
     listChecks: [],
     activeCheck: null,
     errorMessage: undefined,
     currentPage: 1,
-    events: [
-        {
-            "event_type": "Success",
-            "event_timestamp": "2023-04-17T16:07:03.486121+00:00",
-            "status": "Up",
-            "response_code": 200,
-            "latency": 50,
-            "extra": {
-                "status_text": "OK",
-                "remote_ip": "142.250.191.110",
-                "content_length": null,
-                "http_version": "HTTP/2.0",
-                "body": null
-            }
-        }]
+    events: DataCheck
 }
 
 export const serviceSlice = createSlice({
