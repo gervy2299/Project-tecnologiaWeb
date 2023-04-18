@@ -31,7 +31,7 @@ export const ChartCheck = () => {
     const data = {
         labels: labels,
         datasets: [{
-            label: 'My First Dataset',
+            label: 'Latencia',
             data: latency,
             fill: true,
             borderColor: '#178DF5',
