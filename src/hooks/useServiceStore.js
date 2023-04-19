@@ -23,7 +23,7 @@ export const useServiceStore = () => {
     const createNewCheck = async (form) => {
 
         try {
-
+            
             const { data } = await serviceAPI.post("/checks", form);
             dispatch(onCreateCheck(data));
 
@@ -75,7 +75,7 @@ export const useServiceStore = () => {
             const { data } = await serviceAPI.get(`/event/${id}`, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                }
+                },
             });
             dispatch(onSetEvents(data));
         } catch (error) {
