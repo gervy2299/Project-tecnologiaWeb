@@ -3,26 +3,28 @@ import { serviceAPI } from "../api/serviceAPI";
 import {
     onActiveCheck,
     onClickPage,
+    onCreateCheck,
     onDeleteCheck,
     onErrorEvent,
     onNextPage,
     onPrevPage,
-    onSetCheckList
+    onSetCheckList,
 } from "../store/service/serviceSlice";
 
 export const useServiceStore = () => {
 
     const dispatch = useDispatch();
-    const { listChecks, activeCheck, currentPage, events } = useSelector(state => state.service);
+    const { listChecks, activeCheck, currentPage, events, errorMessage } = useSelector(state => state.service);
 
 
 
-    const createNewCheck = async () => {
+    const createNewCheck = async (form) => {
 
         try {
 
-            const res = await serviceAPI.post("/checks");
-            console.log(res);
+            const { data } = await serviceAPI.post("/checks", form);
+            dispatch(onCreateCheck(data));
+
 
         } catch (error) {
             const msg = error.response.data.title;
@@ -101,6 +103,7 @@ export const useServiceStore = () => {
         activeCheck,
         currentPage,
         events,
+        errorMessage,
 
 
         //methods

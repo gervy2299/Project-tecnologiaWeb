@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export const useForm = (initialForm = {}) => {
     const [formState, setFormState] = useState(initialForm);
@@ -13,10 +13,17 @@ export const useForm = (initialForm = {}) => {
     const onResetForm = () => {
         setFormState(initialForm);
     }
+
+    const enabled = useRef();
+    const ignore_tls = useRef();
+
+
     return {
         ...formState,
         formState,
         onInputChange,
-        onResetForm
+        onResetForm,
+        enabled,
+        ignore_tls
     }
 }

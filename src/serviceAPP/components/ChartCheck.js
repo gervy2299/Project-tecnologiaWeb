@@ -40,7 +40,6 @@ export const ChartCheck = () => {
             borderColor: '#178DF5',
             backgroundColor: 'rgba(23, 141, 245,0.3)',
             pointRadius: 5,
-
         }]
     };
 

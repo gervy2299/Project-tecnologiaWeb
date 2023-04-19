@@ -48,7 +48,7 @@ export const DataCheck =
             "event_timestamp": "2023-04-17T23:01:16.947524+00:00",
             "status": "Up",
             "response_code": 200,
-            "latency": 183,
+            "latency": 0,
             "extra": {
                 "status_text": "OK",
                 "remote_ip": "172.67.183.201",
@@ -63,7 +63,7 @@ export const DataCheck =
             "event_timestamp": "2023-04-17T23:02:16.939128+00:00",
             "status": "Up",
             "response_code": 200,
-            "latency": 175,
+            "latency": 0,
             "extra": {
                 "status_text": "OK",
                 "remote_ip": "172.67.183.201",

@@ -14,7 +14,7 @@ export const serviceSlice = createSlice({
     initialState,
     reducers: {
 
-        onSetCheckList: (state, { payload }) => {
+        onSetCheckList: (state, { payload = [] }) => {
             state.listChecks = payload;
         },
         onErrorEvent: (state, { payload }) => {
@@ -31,6 +31,9 @@ export const serviceSlice = createSlice({
         },
         onActiveCheck: (state, { payload }) => {
             state.activeCheck = payload;
+        },
+        onCreateCheck: (state, { payload }) => {
+            state.listChecks.push(payload);
         },
         onDeleteCheck: (state, { payload }) => {
             state.listChecks = state.listChecks.filter(check => check.id !== payload);
@@ -51,5 +54,6 @@ export const {
     onClickPage,
     onActiveCheck,
     onDeleteCheck,
-    onSetEvents
+    onSetEvents,
+    onCreateCheck
 } = serviceSlice.actions
