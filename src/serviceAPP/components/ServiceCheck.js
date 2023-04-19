@@ -10,11 +10,11 @@ import { ChartCheck } from "./ChartCheck";
 export const ServiceCheck = () => {
 
     const { id } = useParams();
-    const { onSetActiveCheck, onSetEvents, deleteCheck, activeCheck } = useServiceStore();
+    const { onSetActiveCheck, onGetEvents, deleteCheck, activeCheck } = useServiceStore();
     useEffect(() => {
 
         onSetActiveCheck(Number(id));
-        onSetEvents(id);
+        onGetEvents(id);
 
     }, [id]);
 

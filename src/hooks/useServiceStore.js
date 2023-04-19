@@ -9,7 +9,9 @@ import {
     onNextPage,
     onPrevPage,
     onSetCheckList,
+    onSetEvents
 } from "../store/service/serviceSlice";
+
 
 export const useServiceStore = () => {
 
@@ -66,20 +68,19 @@ export const useServiceStore = () => {
         }
     }
 
-    const onSetEvents = async (id) => {
-        /* const rangeData = {
-            "after": null,
-            "before": null
-        } */
+    const onGetEvents = async (id) => {
 
-        /*  try {
- 
-             const res = await serviceAPI.get(`/event/${id}`, rangeData);
-             console.log(res);
-         } catch (error) {
-             console.error(error);
-         } */
+        try {
 
+            const { data } = await serviceAPI.get(`/event/${id}`, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+            });
+            dispatch(onSetEvents(data));
+        } catch (error) {
+            console.error(error);
+        }
     }
 
 
@@ -114,6 +115,6 @@ export const useServiceStore = () => {
         onClickNumberPage,
         onSetActiveCheck,
         deleteCheck,
-        onSetEvents
+        onGetEvents
     }
 }

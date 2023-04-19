@@ -6,7 +6,7 @@ const initialState = {
     activeCheck: null,
     errorMessage: undefined,
     currentPage: 1,
-    events: DataCheck
+    events: [],
 }
 
 export const serviceSlice = createSlice({
