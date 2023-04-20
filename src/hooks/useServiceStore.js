@@ -23,7 +23,7 @@ export const useServiceStore = () => {
     const createNewCheck = async (form) => {
 
         try {
-            
+
             const { data } = await serviceAPI.post("/checks", form);
             dispatch(onCreateCheck(data));
 

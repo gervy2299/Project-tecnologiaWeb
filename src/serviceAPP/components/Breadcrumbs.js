@@ -46,6 +46,14 @@ export const Breadcrumbs = () => {
                         ) :
                             ""
                     }
+                    {
+                        pathname.includes("/update-check") ? (
+                            <>
+                                <p className="text-slate-500">Actualizar check</p>
+                            </>
+                        ) :
+                            ""
+                    }
                 </ol>
             </nav>
             {/* <!-- End Elevated breadcrumb with text & leading icon --> */}
