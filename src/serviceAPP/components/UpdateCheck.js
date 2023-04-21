@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 export const UpdateCheck = () => {
 
     const { activeCheck, createNewCheck } = useServiceStore();
+    const navigate = useNavigate();
 
     const { formState, formState: {
         interval,
@@ -49,8 +50,6 @@ export const UpdateCheck = () => {
 
         createNewCheck(formState);
 
-
-
         onResetForm();
         Swal.fire({
             position: 'center',
@@ -59,11 +58,9 @@ export const UpdateCheck = () => {
             showConfirmButton: false,
             timer: 1500,
         });
-
+        navigate(-1);
 
     }
-
-
 
 
     return (
@@ -192,9 +189,11 @@ export const UpdateCheck = () => {
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" className="btn self-end hover:bg-blue-500 hover:text-white">
+
+                        <button type="submit" className="btn self-end hover:bg-blue-800 hover:text-white">
                             <p>Actualizar Check</p>
                         </button>
+
                     </form>
                 </div>
             </main>
