@@ -9,7 +9,8 @@ import {
     onNextPage,
     onPrevPage,
     onSetCheckList,
-    onSetEvents
+    onSetEvents,
+    onUpdateCheck
 } from "../store/service/serviceSlice";
 
 
@@ -23,6 +24,12 @@ export const useServiceStore = () => {
     const createNewCheck = async (form) => {
 
         try {
+
+            if (form.id) {
+                await serviceAPI.patch("/checks", form);
+                dispatch(onUpdateCheck({ ...form }));
+                return;
+            }
 
             const { data } = await serviceAPI.post("/checks", form);
             dispatch(onCreateCheck(data));

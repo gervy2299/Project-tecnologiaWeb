@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { DataCheck } from '../../helpers';
 
 const initialState = {
     listChecks: [],
@@ -16,6 +15,7 @@ export const serviceSlice = createSlice({
 
         onSetCheckList: (state, { payload = [] }) => {
             state.listChecks = payload;
+            state.activeCheck = null;
         },
         onErrorEvent: (state, { payload }) => {
             state.errorMessage = payload;
@@ -34,6 +34,17 @@ export const serviceSlice = createSlice({
         },
         onCreateCheck: (state, { payload }) => {
             state.listChecks.push(payload);
+            state.activeCheck = null;
+        },
+
+        onUpdateCheck: (state, { payload }) => {
+            state.listChecks = state.listChecks.map(check => {
+                if (check.id === payload.id) {
+                    return payload;
+                }
+
+                return check;
+            });
         },
         onDeleteCheck: (state, { payload }) => {
             state.listChecks = state.listChecks.filter(check => check.id !== payload);
@@ -55,5 +66,6 @@ export const {
     onActiveCheck,
     onDeleteCheck,
     onSetEvents,
-    onCreateCheck
+    onCreateCheck,
+    onUpdateCheck
 } = serviceSlice.actions

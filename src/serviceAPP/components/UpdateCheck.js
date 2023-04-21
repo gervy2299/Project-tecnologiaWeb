@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useForm, useServiceStore } from '../../hooks';
 import { BasicTemplate } from '../components/BasicTemplate';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 export const UpdateCheck = () => {
 
-    const { activeCheck } = useServiceStore();
+    const { activeCheck, createNewCheck } = useServiceStore();
 
     const { formState, formState: {
         interval,
@@ -28,15 +30,39 @@ export const UpdateCheck = () => {
     });
 
     useEffect(() => {
-
         enabled.current.checked = activeCheck.enabled;
         ignore_tls.current.checked = activeCheck.ignore_tls;
     }, []);
 
+
+
     const onUpdateSubmit = (e) => {
         e.preventDefault();
-        console.log("Desde actualizar check");
+        formState.id = activeCheck.id;
+        formState.created_date = activeCheck.created_date;
+        formState.enabled = enabled.current.checked;
+        formState.ignore_tls = ignore_tls.current.checked;
+        formState.interval = Number(formState.interval);
+        formState.max_redirects = Number(formState.max_redirects);
+        formState.max_retries = Number(formState.max_retries);
+        formState.retry_interval = Number(formState.retry_interval);
+
+        createNewCheck(formState);
+
+
+
+        onResetForm();
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Check actualizado correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+
+
     }
+
 
 
 
