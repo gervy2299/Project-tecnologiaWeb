@@ -6,6 +6,7 @@ import {
     onLogout,
     onTimeSession,
 } from '../store/auth/authSlice'
+import { onClearAllService } from "../store/service/serviceSlice";
 
 export const useAuthStore = () => {
     const { status, user, errorMessage } = useSelector(state => state.auth);
@@ -72,6 +73,7 @@ export const useAuthStore = () => {
     const startLogout = () => {
         localStorage.removeItem("token");
         dispatch(onLogout());
+        dispatch(onClearAllService());
     }
 
 

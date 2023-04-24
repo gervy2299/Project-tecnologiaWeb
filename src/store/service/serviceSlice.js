@@ -16,6 +16,7 @@ export const serviceSlice = createSlice({
         onSetCheckList: (state, { payload = [] }) => {
             state.listChecks = payload;
             state.activeCheck = null;
+            state.events = [];
         },
         onErrorEvent: (state, { payload }) => {
             state.errorMessage = payload;
@@ -52,6 +53,13 @@ export const serviceSlice = createSlice({
 
         onSetEvents: (state, { payload }) => {
             state.events = payload;
+        },
+
+        onClearAllService: (state, { payload }) => {
+            state.listChecks = [];
+            state.activeCheck = null;
+            state.errorMessage = undefined;
+            state.events = [];
         }
 
     }
@@ -67,5 +75,6 @@ export const {
     onDeleteCheck,
     onSetEvents,
     onCreateCheck,
-    onUpdateCheck
+    onUpdateCheck,
+    onClearAllService,
 } = serviceSlice.actions
