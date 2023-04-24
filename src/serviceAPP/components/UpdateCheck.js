@@ -68,7 +68,7 @@ export const UpdateCheck = () => {
             <BasicTemplate />
             <main className='container mx-auto'>
                 <div className="mt-5 mb-10 p-4 overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
-                    <form action="" className="grid grid-cols-2 gap-8" onSubmit={onUpdateSubmit}>
+                    <form action="" className="grid grid-cols-1 md:grid-cols-2 gap-8" onSubmit={onUpdateSubmit}>
                         <div>
                             <div className="relative flex flex-wrap gap-2 items-center">
                                 <label
@@ -147,7 +147,7 @@ export const UpdateCheck = () => {
                             <div className="form-control my-2">
                                 <label className="input-group input-group-md">
                                     <span>URL</span>
-                                    <input type="text" placeholder="https://www.youtube.com" className="input input-bordered input-md"
+                                    <input type="text" placeholder="https://www.youtube.com" className="input input-bordered input-md w-full"
                                         name="url"
                                         value={url}
                                         onChange={onInputChange}
