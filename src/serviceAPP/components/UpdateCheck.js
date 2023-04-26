@@ -42,7 +42,7 @@ export const UpdateCheck = () => {
         formState.id = activeCheck.id;
         formState.created_date = activeCheck.created_date;
         formState.enabled = enabled.current.checked;
-        formState.ignore_tls = ignore_tls.current.checked;
+        formState.ignore_tls = ignore_tls.current.checked;  
         formState.interval = Number(formState.interval);
         formState.max_redirects = Number(formState.max_redirects);
         formState.max_retries = Number(formState.max_retries);
