@@ -43,17 +43,28 @@ export const ChartCheck = () => {
             borderColor: '#178DF5',
             backgroundColor: 'rgba(23, 141, 245,0.3)',
             pointRadius: 5,
-            tension: 0
+            tension: 0.1
 
         }]
     };
+    const decimation = {
+        enabled: true,
+        algorithm: 'lttb',
+        samples: 2
+    };
+
+    const myOption = {
+        plugins: {
+            decimation: decimation,
+        }
+    }
 
 
 
 
     return (
         <>
-            <Line data={data} />
+            <Line data={data} options={myOption} />
         </>
     )
 }
