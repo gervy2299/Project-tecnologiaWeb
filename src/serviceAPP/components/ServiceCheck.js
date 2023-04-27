@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { useServiceStore } from "../../hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import internet from "../../internet.png";
 import { formatDate } from "../../helpers";
 import { BasicTemplate } from "./BasicTemplate";
@@ -9,14 +9,19 @@ import { ChartCheck } from "./ChartCheck";
 
 export const ServiceCheck = () => {
 
+    let [dateAfter, setdateAfter] = useState("");
+
     const { id } = useParams();
-    const { onSetActiveCheck, onGetEvents, deleteCheck, activeCheck } = useServiceStore();
+    const { onSetActiveCheck, onGetEvents, deleteCheck, activeCheck, events } = useServiceStore();
     useEffect(() => {
 
         onSetActiveCheck(Number(id));
-        onGetEvents(id);
-
     }, [id]);
+
+    useEffect(() => {
+        onGetEvents(id);
+    }, [id])
+
 
     const navigate = useNavigate();
 
@@ -46,6 +51,25 @@ export const ServiceCheck = () => {
         })
     }
 
+    const handleChangeDateTimeAfter = ({ target }) => {
+        let originalDateAfter = new Date(target.value);
+        dateAfter = new Date(originalDateAfter);
+        
+        dateAfter = originalDateAfter.toISOString().slice(0, 16)
+        setdateAfter(dateAfter);
+
+        onGetEvents(id, originalDateAfter.toISOString());
+    }
+
+    const handleChangeDateTimeBefore = ({ target }) => {
+        let dateFrom = new Date(dateAfter);
+        if (target.value !== "") {
+            let originalDateBefore = new Date(target.value);
+            return onGetEvents(id, dateFrom.toISOString(), originalDateBefore.toISOString());
+        }
+
+        onGetEvents(id, dateFrom.toISOString());
+    }
 
 
     return (
@@ -92,6 +116,16 @@ export const ServiceCheck = () => {
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div action="" className="flex mt-5 mb-10 p-4 overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
+                                <label className="input-group input-group-md">
+                                    <span>De</span>
+                                    <input type="datetime-local" onChange={handleChangeDateTimeAfter} />
+                                </label>
+                                <label className="input-group input-group-md">
+                                    <span>A</span>
+                                    <input type="datetime-local" min={dateAfter} onChange={handleChangeDateTimeBefore} />
+                                </label>
                             </div>
                             <ChartCheck />
                             <div className="my-6 flex justify-end items-end btn-group">

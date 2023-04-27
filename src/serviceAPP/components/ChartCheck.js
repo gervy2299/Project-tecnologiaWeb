@@ -25,12 +25,15 @@ ChartJs.register(
     Filler
 )
 
+
+
 export const ChartCheck = () => {
 
     const { events } = useServiceStore();
 
     const labels = events.map(time => formTime(time.event_timestamp));
     const latency = events.map(lt => lt.latency);
+
     const data = {
         labels: labels,
         datasets: [{
@@ -40,8 +43,13 @@ export const ChartCheck = () => {
             borderColor: '#178DF5',
             backgroundColor: 'rgba(23, 141, 245,0.3)',
             pointRadius: 5,
+            tension: 0
+
         }]
     };
+
+
+
 
     return (
         <>

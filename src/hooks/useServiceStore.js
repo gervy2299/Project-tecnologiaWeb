@@ -75,16 +75,42 @@ export const useServiceStore = () => {
         }
     }
 
-    const onGetEvents = async (id) => {
+    const onGetEvents = async (id, fromDate, toDate) => {
+
+
+        let dateNow = new Date();
+        dateNow.setHours(dateNow.getHours() - 1)
 
         try {
 
-            const { data } = await serviceAPI.get(`/event/${id}`, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-            });
-            dispatch(onSetEvents(data));
+            if (fromDate === undefined) {
+                const { data } = await serviceAPI.get(`/event/${id}?after=${dateNow.toISOString()}`, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                });
+                return dispatch(onSetEvents(data));
+            }
+
+            if (fromDate !== undefined) {
+                const { data } = await serviceAPI.get(`/event/${id}?after=${fromDate}`, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                });
+                return dispatch(onSetEvents(data));
+            }
+            
+            if (fromDate !== undefined && toDate !== undefined) {
+                const { data } = await serviceAPI.get(`/event/${id}?after=${fromDate}&before=${toDate}`, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                });
+                return dispatch(onSetEvents(data));
+            }
+
+
         } catch (error) {
             console.error(error);
         }
