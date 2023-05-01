@@ -11,6 +11,10 @@
 # production
 /build
 
+Tests
+babel.*
+jest.*
+
 # misc
 .DS_Store
 .env
