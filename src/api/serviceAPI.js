@@ -1,9 +1,9 @@
 import axios from "axios";
 import { getEnvVariables } from "../helpers/getEnvVariables"
 
-const { apiUrl } = getEnvVariables();
+const { REACT_APP_API_URL } = getEnvVariables();
 export const serviceAPI = axios.create({
-    baseURL: apiUrl
+    baseURL: REACT_APP_API_URL
 });
 
 
