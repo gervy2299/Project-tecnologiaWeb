@@ -1,22 +1,68 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore, useForm } from "../../hooks";
 import * as LottiePlayer from "@lottiefiles/lottie-player";
+import Swal from "sweetalert2";
 
 
 export const RegisterPage = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { createNewUser, errorMessage, msg } = useAuthStore();
+    const navigate = useNavigate();
+    const { formState, formState: {
+        name,
+        last_name,
+        email,
+        username,
+        password,
+    }, onInputChange, onResetForm } = useForm({
+        name: "",
+        last_name: "",
+        email: "",
+        username: "",
+        password: ""
+    });
+
+    const handleSubmitRegister = (e) => {
+        e.preventDefault();
+        createNewUser(formState);
+        onResetForm();
+    }
+
+    useEffect(() => {
+        if (msg !== undefined) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Usuario creado exitosamente',
+                text: 'Ahora puedes iniciar sesión',
+            })
+            navigate(-1);
+        }
+    }, [msg])
+
+    useEffect(() => {
+        if (errorMessage !== undefined) {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: errorMessage,
+            })
+        }
+    }, [errorMessage])
+
 
     return (
         <>
             <div className="h-full mx-auto my-20 w-4/5  animate__animated animate__fadeIn">
                 <main className="mt-4 grid gap-8 items-center md:grid-cols-2">
-                    <section className="animation hidden md:visible">
+                    <section className="animation hidden md:block">
                         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
                         <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_oygnve11.json" loop autoplay></lottie-player>
                     </section>
                     <section className="form">
                         <h1 className="my-2 text-3xl text-center font-medium">Registrarse</h1>
-                        <form action="" className="my-6 flex flex-col gap-10">
+                        <form action="" className="my-6 flex flex-col gap-10" onSubmit={handleSubmitRegister}>
                             <div className="relative">
                                 <input
                                     id="id-b14"
@@ -24,6 +70,8 @@ export const RegisterPage = () => {
                                     placeholder="Tu nombre"
                                     className="peer relative h-10 w-full border-b border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-sky-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
                                     name="name"
+                                    value={name}
+                                    onChange={onInputChange}
                                 />
                                 <label
                                     htmlFor="id-b14"
@@ -39,7 +87,8 @@ export const RegisterPage = () => {
                                     placeholder="Tu apellido"
                                     className="peer relative h-10 w-full border-b border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-sky-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
                                     name="last_name"
-
+                                    value={last_name}
+                                    onChange={onInputChange}
                                 />
                                 <label
                                     htmlFor="id-b15"
@@ -55,7 +104,8 @@ export const RegisterPage = () => {
                                     placeholder="Tu correo"
                                     className="peer relative h-10 w-full border-b border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-sky-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
                                     name="email"
-
+                                    value={email}
+                                    onChange={onInputChange}
 
                                 />
                                 <label
@@ -69,17 +119,18 @@ export const RegisterPage = () => {
                                 <input
                                     id="id-b17"
                                     type="text"
-                                    placeholder="Tu apellido"
+                                    placeholder="Crea tu nombre de usuario"
                                     className="peer relative h-10 w-full border-b border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-sky-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-                                    name="last_name"
-
+                                    name="username"
+                                    value={username}
+                                    onChange={onInputChange}
 
                                 />
                                 <label
                                     htmlFor="id-b17"
                                     className="absolute left-2 -top-2 z-[1] cursor-text px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\u*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-sky-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
                                 >
-                                    Tu apellido
+                                    Crea tu nombre de usuario
                                 </label>
                             </div>
                             <div className="">
@@ -87,9 +138,11 @@ export const RegisterPage = () => {
                                     <input
                                         id="id-b18"
                                         type={showPassword ? "text" : "password"}
-                                        placeholder="your name"
+                                        placeholder="Crea tu password"
                                         className="peer relative h-10 w-full border-b border-slate-200 px-4 pr-12 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-sky-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
                                         name="password"
+                                        value={password}
+                                        onChange={onInputChange}
 
                                     />
                                     <label

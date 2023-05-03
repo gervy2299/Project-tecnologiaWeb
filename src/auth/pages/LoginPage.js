@@ -44,7 +44,7 @@ export const LoginPage = () => {
             {/*    <!-- Component: Plain basic input  --> */}
             <div className="h-full mx-auto my-20 w-4/5 animate__animated animate__fadeIn">
                 <main className="grid gap-8 items-center md:grid-cols-2">
-                    <section className="animation hidden md:visible">
+                    <section className="animation hidden md:block">
                         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
                         <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_B2qAl3/data.json" loop autoplay></lottie-player>
                     </section>

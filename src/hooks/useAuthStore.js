@@ -2,14 +2,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
 import {
     onChecking,
+    onCreateErrorMessage,
     onLogin,
     onLogout,
     onTimeSession,
+    clearErrorMessage,
+    onNewUser
 } from '../store/auth/authSlice'
 import { onClearAllService } from "../store/service/serviceSlice";
 
 export const useAuthStore = () => {
-    const { status, user, errorMessage } = useSelector(state => state.auth);
+    const { status, user, errorMessage, msg } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     const startLogin = async (form) => {
@@ -33,6 +36,10 @@ export const useAuthStore = () => {
             const msg = error.response.data.title;
             dispatch(onLogout(msg));
             console.error(error);
+
+            setTimeout(() => {
+                dispatch(clearErrorMessage());
+            }, 10);
 
         }
     }
@@ -76,18 +83,51 @@ export const useAuthStore = () => {
         dispatch(onClearAllService());
     }
 
+    const createNewUser = async (form) => {
+        try {
+
+            await serviceAPI.post("/register", form);
+            dispatch(onNewUser());
+            setTimeout(() => {
+                dispatch(clearErrorMessage());
+            }, 10);
+
+        } catch (error) {
+            const status = error.response.data.status;
+
+            if (status === 500) {
+                return dispatch(onCreateErrorMessage("Usuario ya existe, crea otro nombre de usuario"));
+            }
+
+            const msg = error.response.data.detail;
+            dispatch(onCreateErrorMessage(msg));
+            console.error(error);
+
+            setTimeout(() => {
+                dispatch(clearErrorMessage());
+            }, 10);
+        }
+    }
+
+    const clearMessages = () => {
+        dispatch(clearErrorMessage());
+    }
+
 
     return {
         //propierties
         errorMessage,
         status,
         user,
+        msg,
 
 
         //methods
         startLogin,
         startLogout,
         checkSession,
-        checkTimeSession
+        checkTimeSession,
+        createNewUser,
+        clearMessages
     }
 }
