@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom"
-import { LoginPage } from "../auth/pages";
+import { LoginPage, RegisterPage } from "../auth/pages";
 import { useAuthStore } from "../hooks";
 import { ServicePage } from "../serviceAPP/pages";
 import { FormCheck, ServiceCheck, UpdateCheck } from "../serviceAPP/components";
@@ -32,6 +32,7 @@ export const AppRouter = () => {
             {status === "not-authenticated" ? (
                 <>
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
                     <Route path="/*" element={<Navigate to={"/login"} />} />
                 </>
             ) : (
