@@ -58,7 +58,7 @@ export const RegisterPage = () => {
                 <main className="mt-4 grid gap-8 items-center md:grid-cols-2">
                     <section className="animation hidden md:block">
                         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_oygnve11.json" loop autoplay></lottie-player>
+                        <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_3jezq8s4.json" loop autoplay></lottie-player>
                     </section>
                     <section className="form">
                         <h1 className="my-2 text-3xl text-center font-medium">Registrarse</h1>
@@ -199,7 +199,7 @@ export const RegisterPage = () => {
                                     )}
                                 </div>
                             </div>
-                            <button type="submit" className="p-2 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-sky-500 hover:bg-sky-600 focus:bg-sky-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-sky-300 disabled:bg-sky-300 disabled:shadow-none">
+                            <button type="submit" className="btn p-2 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-sky-500 hover:bg-sky-600 focus:bg-sky-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-sky-300 disabled:bg-sky-300 disabled:shadow-none">
                                 <span>Crear cuenta</span>
                             </button>
                         </form>
