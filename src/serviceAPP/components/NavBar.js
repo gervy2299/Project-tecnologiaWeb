@@ -17,7 +17,10 @@ export const NavBar = () => {
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to={"/"}>Home</Link></li>
                             <li><Link to={"/create-check"}>Crear nuevo check</Link></li>
-                            <li><Link to={"/create-user"}>Crear nuevo usuario</Link></li>
+                            {
+                                user.username === "prueba_su" ? <li><Link to={"/create-user"}>Crear nuevo usuario</Link></li> : ""
+                            }
+
                         </ul>
                     </div>
                 </div>
