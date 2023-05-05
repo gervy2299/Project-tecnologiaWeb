@@ -12,7 +12,7 @@ export const ServiceCheck = () => {
     let [dateAfter, setdateAfter] = useState("");
 
     const { id } = useParams();
-    const { onSetActiveCheck, onGetEvents, deleteCheck, activeCheck, events } = useServiceStore();
+    const { onSetActiveCheck, onGetEvents, deleteCheck, activeCheck } = useServiceStore();
     useEffect(() => {
 
         onSetActiveCheck(Number(id));
@@ -54,7 +54,7 @@ export const ServiceCheck = () => {
     const handleChangeDateTimeAfter = ({ target }) => {
         let originalDateAfter = new Date(target.value);
         dateAfter = new Date(originalDateAfter);
-        
+
         dateAfter = originalDateAfter.toISOString().slice(0, 16)
         setdateAfter(dateAfter);
 

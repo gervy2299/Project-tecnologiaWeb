@@ -8,7 +8,9 @@ export const ShowRoutes = () => {
         case "create-check":
             vspanish = "Crear check"
             break;
-
+        case "create-user":
+            vspanish = "Crear nuevo usuario"
+            break;
         default:
             vspanish = "";
             break;
