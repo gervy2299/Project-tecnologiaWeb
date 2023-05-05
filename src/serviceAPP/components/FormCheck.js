@@ -111,8 +111,8 @@ export const FormCheck = () => {
                 <select className="select select-bordered w-full max-w-xs" name="method"
                   value={method} onChange={onInputChange} required>
                   <option value="" disabled defaultValue>Método</option>
-                  <option value="Get">Get</option>
-                  <option value="Post">Post</option>
+                  <option value="GET">Get</option>
+                  <option value="POST">Post</option>
                 </select>
                 <select className="select select-bordered w-full max-w-xs"
                   name="check_type"
