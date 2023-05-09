@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom"
 import { LoginPage, RegisterPage } from "../auth/pages";
 import { useAuthStore } from "../hooks";
-import { ServicePage } from "../serviceAPP/pages";
+import { RunnersPage, ServicePage } from "../serviceAPP/pages";
 import { FormCheck, FormNewUser, ServiceCheck, UpdateCheck } from "../serviceAPP/components";
 
 export const AppRouter = () => {
@@ -42,6 +42,7 @@ export const AppRouter = () => {
                     <Route path="/check/:id" element={<ServiceCheck />} />
                     <Route path="/update-check/:id" element={<UpdateCheck />} />
                     <Route path="/create-user" element={<FormNewUser />} />
+                    <Route path="/runner" element={<RunnersPage />} />
                     <Route path="/*" element={<Navigate to={"/"} />} />
                 </>)}
         </Routes>

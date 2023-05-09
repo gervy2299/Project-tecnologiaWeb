@@ -54,6 +54,13 @@ export const Breadcrumbs = () => {
                         ) :
                             ""
                     }
+                    {
+                        pathname.includes("/runner") ?
+                            (<>
+                                <p className="text-slate-500">Runners</p>
+                            </>) :
+                            ""
+                    }
                 </ol>
             </nav>
             {/* <!-- End Elevated breadcrumb with text & leading icon --> */}

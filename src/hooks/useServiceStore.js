@@ -10,6 +10,7 @@ import {
     onPrevPage,
     onSetCheckList,
     onSetEvents,
+    onSetListRunners,
     onUpdateCheck
 } from "../store/service/serviceSlice";
 
@@ -17,7 +18,7 @@ import {
 export const useServiceStore = () => {
 
     const dispatch = useDispatch();
-    const { listChecks, activeCheck, currentPage, events, errorMessage } = useSelector(state => state.service);
+    const { listChecks, listRunners, activeCheck, currentPage, events, errorMessage } = useSelector(state => state.service);
 
 
 
@@ -100,7 +101,7 @@ export const useServiceStore = () => {
                 });
                 return dispatch(onSetEvents(data));
             }
-            
+
             if (fromDate !== undefined && toDate !== undefined) {
                 const { data } = await serviceAPI.get(`/event/${id}?after=${fromDate}&before=${toDate}`, {
                     headers: {
@@ -115,6 +116,19 @@ export const useServiceStore = () => {
             console.error(error);
         }
     }
+
+    const onGetRunners = async () => {
+        try {
+
+            const { data } = await serviceAPI.get('/runner?page_number=1&page_size=10');
+            dispatch(onSetListRunners(data.data));
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
 
 
 
@@ -134,6 +148,7 @@ export const useServiceStore = () => {
     return {
         //propierties
         listChecks,
+        listRunners,
         activeCheck,
         currentPage,
         events,
@@ -148,6 +163,7 @@ export const useServiceStore = () => {
         onClickNumberPage,
         onSetActiveCheck,
         deleteCheck,
-        onGetEvents
+        onGetEvents,
+        onGetRunners
     }
 }

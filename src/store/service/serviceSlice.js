@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     listChecks: [],
+    listRunners: [],
     activeCheck: null,
     errorMessage: undefined,
     currentPage: 1,
@@ -15,6 +16,11 @@ export const serviceSlice = createSlice({
 
         onSetCheckList: (state, { payload = [] }) => {
             state.listChecks = payload;
+            state.activeCheck = null;
+            state.events = [];
+        },
+        onSetListRunners: (state, { payload = [] }) => {
+            state.listRunners = payload;
             state.activeCheck = null;
             state.events = [];
         },
@@ -68,6 +74,7 @@ export const serviceSlice = createSlice({
 export const {
     onErrorEvent,
     onSetCheckList,
+    onSetListRunners,
     onNextPage,
     onPrevPage,
     onClickPage,

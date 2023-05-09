@@ -20,6 +20,7 @@ export const NavBar = () => {
                             {
                                 user.username === "prueba_su" ? <li><Link to={"/create-user"}>Crear nuevo usuario</Link></li> : ""
                             }
+                            <li><Link to={"/runner"}>Runners</Link></li>
 
                         </ul>
                     </div>
