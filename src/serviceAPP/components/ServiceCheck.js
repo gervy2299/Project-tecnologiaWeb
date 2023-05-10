@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { useServiceStore } from "../../hooks";
+import { useAuthStore, useServiceStore } from "../../hooks";
 import { useEffect, useState } from "react";
 import internet from "../../internet.png";
 import { formatDate } from "../../helpers";
@@ -13,6 +13,7 @@ export const ServiceCheck = () => {
 
     const { id } = useParams();
     const { onSetActiveCheck, onGetEvents, deleteCheck, activeCheck } = useServiceStore();
+    const { user } = useAuthStore();
     useEffect(() => {
 
         onSetActiveCheck(Number(id));
@@ -117,23 +118,26 @@ export const ServiceCheck = () => {
                                     </tbody>
                                 </table>
                             </div>
-                            <div action="" className="flex mt-5 mb-10 p-4 overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
+                            <div action="" className="flex flex-col gap-4 mt-5 mb-10 p-4 overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
                                 <label className="input-group input-group-md">
                                     <span>De</span>
                                     <input type="datetime-local" onChange={handleChangeDateTimeAfter} />
                                 </label>
-                                <label className="input-group input-group-md">
+                                {/* <label className="input-group input-group-md">
                                     <span>A</span>
                                     <input type="datetime-local" min={dateAfter} onChange={handleChangeDateTimeBefore} />
-                                </label>
+                                </label> */}
                             </div>
                             <ChartCheck />
                             <div className="my-6 flex justify-end items-end btn-group">
-                                <Link
-                                    to={`/update-check/${id}`}
-                                    className="btn border-0 inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-amber-500 hover:bg-amber-600 focus:bg-amber-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-amber-300 disabled:bg-amber-300 disabled:shadow-none">
-                                    <span>Actualizar</span>
-                                </Link>
+                                {
+                                    user.username === "prueba_su" ? (<Link
+                                        to={`/update-check/${id}`}
+                                        className="btn border-0 inline-flex items-center justify-center h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded whitespace-nowrap bg-amber-500 hover:bg-amber-600 focus:bg-amber-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-amber-300 disabled:bg-amber-300 disabled:shadow-none">
+                                        <span>Actualizar</span>
+                                    </Link>) : ""
+                                }
+
 
                                 <button onClick={handleDeleteCheck}
                                     className="btn border-0 h-10 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-red-500 hover:bg-red-600 focus:bg-red-700 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300 disabled:shadow-none">

@@ -56,7 +56,7 @@ export const LoginPage = () => {
                                     <input
                                         id="id-b04"
                                         type="text"
-                                        placeholder="Tu nombre de usuario"
+                                        placeholder="Nombre de usuario"
                                         className="peer relative h-10 w-full border-b border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-sky-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
                                         name="username"
                                         value={username}
@@ -66,7 +66,7 @@ export const LoginPage = () => {
                                         htmlFor="id-b04"
                                         className="absolute left-2 -top-2 z-[1] cursor-text px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\u*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-sky-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
                                     >
-                                        Tu nombre de usuario
+                                        Nombre de usuario
                                     </label>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ export const LoginPage = () => {
                                     <input
                                         id="id-b14"
                                         type={showPassword ? "text" : "password"}
-                                        placeholder="Tu password"
+                                        placeholder="Password"
                                         className="peer relative h-10 w-full border-b border-slate-200 px-4 pr-12 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-sky-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
                                         name="password"
                                         value={password}
@@ -85,7 +85,7 @@ export const LoginPage = () => {
                                         htmlFor="id-b14"
                                         className="absolute left-2 -top-2 z-[1] cursor-text px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\u*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-sky-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
                                     >
-                                        Tu password
+                                        Password
                                     </label>
                                     {showPassword ? (
                                         <svg

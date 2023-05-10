@@ -28,13 +28,24 @@ export const ModalForm = () => {
         e.preventDefault();
         formState.is_global = is_global.current.checked;
         createNewRunner(formState);
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Runner creado correctamente',
-            showConfirmButton: false,
-            timer: 1500,
-        });
+        if (activeRunner === null) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Runner creado correctamente',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        } else {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Runner actualizado correctamente',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+
         onResetForm();
         closeModal();
     }
@@ -63,7 +74,11 @@ export const ModalForm = () => {
             closeTimeoutMS={200}
         >
             <div className="flex justify-between p-2">
-                <h1 className="text-2xl font-bold">Crea runner</h1>
+                <h1 className="text-2xl font-bold">
+                    {
+                        activeRunner !== null ? "Actualizar runner" : "Crear nuevo runner"
+                    }
+                </h1>
                 <button className="bg-red-800 text-white rounded-md" onClick={handleCloseModal}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -107,7 +122,9 @@ export const ModalForm = () => {
                     />
                 </div>
                 <button type="submit" className="btn mt-8 self-center hover:bg-blue-500 hover:text-white">
-                    Crear runner
+                    {
+                        activeRunner !== null ? "Actualizar" : "Crear"
+                    }
                 </button>
             </form>
         </Modal>
