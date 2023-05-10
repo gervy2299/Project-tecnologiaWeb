@@ -7,6 +7,8 @@ const initialState = {
     errorMessage: undefined,
     currentPage: 1,
     events: [],
+    modal: false,
+    activeRunner: null,
 }
 
 export const serviceSlice = createSlice({
@@ -39,9 +41,17 @@ export const serviceSlice = createSlice({
         onActiveCheck: (state, { payload }) => {
             state.activeCheck = payload;
         },
+        onActiveRunner: (state, { payload }) => {
+            state.activeRunner = payload;
+        },
+
         onCreateCheck: (state, { payload }) => {
             state.listChecks.push(payload);
             state.activeCheck = null;
+        },
+        onCreateRunner: (state, { payload }) => {
+            state.listRunners.push(payload);
+            state.activeRunner = null;
         },
 
         onUpdateCheck: (state, { payload }) => {
@@ -53,13 +63,33 @@ export const serviceSlice = createSlice({
                 return check;
             });
         },
+        onUpdateRunner: (state, { payload }) => {
+            state.listRunners = state.listRunners.map(runner => {
+                if (runner.id === payload.id) {
+                    return payload;
+                }
+
+                return runner;
+            });
+        },
         onDeleteCheck: (state, { payload }) => {
             state.listChecks = state.listChecks.filter(check => check.id !== payload);
+        },
+        onDeleteRunner: (state, { payload }) => {
+            state.listRunners = state.listRunners.filter(runner => runner.id !== payload);
         },
 
         onSetEvents: (state, { payload }) => {
             state.events = payload;
         },
+        onCloseModal: (state, { payload }) => {
+            state.modal = false;
+            state.activeRunner = null;
+        },
+        onOpenModal: (state, { payload }) => {
+            state.modal = true;
+        },
+
 
         onClearAllService: (state, { payload }) => {
             state.listChecks = [];
@@ -80,8 +110,14 @@ export const {
     onClickPage,
     onActiveCheck,
     onDeleteCheck,
+    onDeleteRunner,
     onSetEvents,
     onCreateCheck,
     onUpdateCheck,
     onClearAllService,
+    onCloseModal,
+    onOpenModal,
+    onUpdateRunner,
+    onActiveRunner,
+    onCreateRunner,
 } = serviceSlice.actions

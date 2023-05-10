@@ -16,6 +16,7 @@ export const useForm = (initialForm = {}) => {
 
     const enabled = useRef();
     const ignore_tls = useRef();
+    const is_global = useRef();
 
 
     return {
@@ -24,6 +25,8 @@ export const useForm = (initialForm = {}) => {
         onInputChange,
         onResetForm,
         enabled,
-        ignore_tls
+        ignore_tls,
+        is_global,
+        setFormState
     }
 }

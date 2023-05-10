@@ -2,23 +2,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { serviceAPI } from "../api/serviceAPI";
 import {
     onActiveCheck,
+    onActiveRunner,
     onClickPage,
+    onCloseModal,
     onCreateCheck,
+    onCreateRunner,
     onDeleteCheck,
+    onDeleteRunner,
     onErrorEvent,
     onNextPage,
+    onOpenModal,
     onPrevPage,
     onSetCheckList,
     onSetEvents,
     onSetListRunners,
-    onUpdateCheck
+    onUpdateCheck,
+    onUpdateRunner
 } from "../store/service/serviceSlice";
 
 
 export const useServiceStore = () => {
 
     const dispatch = useDispatch();
-    const { listChecks, listRunners, activeCheck, currentPage, events, errorMessage } = useSelector(state => state.service);
+    const { listChecks, listRunners, activeCheck, currentPage, events, errorMessage, modal, activeRunner } = useSelector(state => state.service);
 
 
 
@@ -128,6 +134,52 @@ export const useServiceStore = () => {
         }
     }
 
+    const createNewRunner = async (form) => {
+
+        try {
+
+            if (form.id) {
+                await serviceAPI.patch(`/runner/${form.id}`, form, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                dispatch(onUpdateRunner({ ...form }));
+                return;
+            }
+
+            const { data } = await serviceAPI.post("/runner", form);
+            dispatch(onCreateRunner(data));
+
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const onSetActiveRunner = async (id) => {
+        try {
+
+            const { data } = await serviceAPI.get(`/runner?page_number=1&page_size=10`);
+            const activeRunner = data.data.find(runner => runner.id === id);
+            dispatch(onActiveRunner(activeRunner));
+        } catch (error) {
+            console.error(error);
+        }
+
+
+    }
+
+    const deleteRunner = async (id) => {
+        try {
+            await serviceAPI.delete(`/runner/${id}`);
+            dispatch(onDeleteRunner(id));
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
 
 
 
@@ -140,7 +192,8 @@ export const useServiceStore = () => {
 
     const onClickNumberPage = (page) => dispatch(onClickPage(page));
 
-
+    const closeModal = () => dispatch(onCloseModal());
+    const openModal = () => dispatch(onOpenModal());
 
 
 
@@ -153,6 +206,8 @@ export const useServiceStore = () => {
         currentPage,
         events,
         errorMessage,
+        modal,
+        activeRunner,
 
 
         //methods
@@ -164,6 +219,12 @@ export const useServiceStore = () => {
         onSetActiveCheck,
         deleteCheck,
         onGetEvents,
-        onGetRunners
+        onGetRunners,
+        deleteRunner,
+        createNewRunner,
+        onSetActiveRunner,
+        closeModal,
+        openModal
+
     }
 }
