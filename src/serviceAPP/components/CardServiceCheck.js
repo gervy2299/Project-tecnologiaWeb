@@ -19,7 +19,7 @@ export const CardServiceCheck = () => {
                         <div className="mt-5 mb-10 overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200" key={check.id}>
 
                             <div className="p-6">
-                                <section className="mb-4 flex justify-between gap-4">
+                                <section className="mb-4 flex flex-col md:flex-row justify-between gap-4">
                                     <div className="flex gap-4">
                                         <img
                                             src={internet}
