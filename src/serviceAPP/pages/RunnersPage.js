@@ -9,12 +9,13 @@ import { ModalForm } from "../components/ModalForm";
 
 export const RunnersPage = () => {
 
-    const { onGetRunners, listRunners, deleteRunner, onSetActiveRunner, openModal } = useServiceStore();
+    const { onGetRunners, listRunners, deleteRunner, onSetActiveRunner, openModal, errorMessage } = useServiceStore();
     useEffect(() => {
         onGetRunners();
     }, [])
 
     const handleDeleteRunner = (id) => {
+
 
         Swal.fire({
             title: '¿Estás seguro(a)?',
@@ -25,21 +26,30 @@ export const RunnersPage = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Si, eliminarlo'
         }).then((result) => {
+
             if (result.isConfirmed) {
 
                 deleteRunner(id);
-
-                Swal.fire(
-                    'Eliminado',
-                    'Runner eliminado exitosamente',
-                    'success'
-                )
-
             }
+
         })
 
 
     }
+
+    useEffect(() => {
+        if (errorMessage !== undefined) {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: errorMessage,
+            })
+        }
+    }, [errorMessage])
+
+
+
 
     const handleUpdateRunner = (id) => {
         onSetActiveRunner(id);

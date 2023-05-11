@@ -3,6 +3,7 @@ import { serviceAPI } from "../api/serviceAPI";
 import {
     onActiveCheck,
     onActiveRunner,
+    onClearAllService,
     onClickPage,
     onCloseModal,
     onCreateCheck,
@@ -154,7 +155,14 @@ export const useServiceStore = () => {
 
 
         } catch (error) {
+            console.error(error);
             console.error(error)
+            const msg = error.response.data.title;
+            dispatch(onErrorEvent(msg));
+
+            setTimeout(() => {
+                dispatch(onClearAllService());
+            }, 100);
         }
     }
 
@@ -177,11 +185,14 @@ export const useServiceStore = () => {
             dispatch(onDeleteRunner(id));
         } catch (error) {
             console.error(error)
+            const msg = error.response.data.title;
+            dispatch(onErrorEvent(msg));
+
+            setTimeout(() => {
+                dispatch(onClearAllService());
+            }, 100);
         }
     }
-
-
-
 
 
 
