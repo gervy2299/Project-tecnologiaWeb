@@ -62,7 +62,7 @@ export const RegisterPage = () => {
                     </section>
                     <section className="form">
                         <h1 className="my-2 text-3xl text-center font-medium">Registrarse</h1>
-                        <form action="" className="my-6 flex flex-col gap-10" onSubmit={handleSubmitRegister}>
+                        <form aria-label="formregister" action="" className="my-6 flex flex-col gap-10" onSubmit={handleSubmitRegister}>
                             <div className="relative">
                                 <input
                                     id="id-b14"
