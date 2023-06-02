@@ -1,5 +1,4 @@
 import { BasicTemplate } from "../components/BasicTemplate"
-import runner from "../../runner.png"
 import { useServiceStore } from "../../hooks"
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -80,7 +79,22 @@ export const RunnersPage = () => {
                         <div className="mt-5 mb-10 flex flex-col justify-center items-center overflow-hidden text-center bg-white rounded shadow-md text-slate-500 shadow-slate-200 hover:bg-slate-100" key={listrunner.id}>
 
                             <figure className="p-6 pb-0">
-                                <img src={runner} alt="" />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="44"
+                                    height="44"
+                                    fill="none"
+                                    stroke="#3b82f6"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="1.5"
+                                    className="icon icon-tabler icon-tabler-arrow-ramp-right"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                                    <path d="M7 3v8.707M11 7L7 3 3 7M17 14l4-4-4-4"></path>
+                                    <path d="M7 21a11 11 0 0111-11h3"></path>
+                                </svg>
                             </figure>
                             <div className="p-6">
                                 <h5 className="mb-4 text-xl font-medium text-slate-800">{listrunner.name}</h5>

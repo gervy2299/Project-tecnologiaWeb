@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { useForm, useServiceStore } from "../../hooks"
 import Modal from "react-modal";
 import { useEffect } from "react";
+import { getEnvVariables } from "../../helpers";
 
 
 const customStyles = {
@@ -14,7 +15,9 @@ const customStyles = {
     },
 };
 
-Modal.setAppElement('#root');
+//Modal.setAppElement('#root');
+const appElement = getEnvVariables().REACT_APP_MODE !== 'test' ? '#root' : null;
+Modal.setAppElement(appElement);
 export const ModalForm = () => {
 
     const { createNewRunner, activeRunner, modal, closeModal } = useServiceStore();

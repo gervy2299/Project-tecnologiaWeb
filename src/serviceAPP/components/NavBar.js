@@ -18,7 +18,7 @@ export const NavBar = () => {
                             <li><Link to={"/"}>Home</Link></li>
                             <li><Link to={"/create-check"}>Crear nuevo check</Link></li>
                             {
-                                user.username === "prueba_su" ? <li><Link to={"/create-user"}>Crear nuevo usuario</Link></li> : ""
+                                user?.username === "prueba_su" ? <li><Link to={"/create-user"}>Crear nuevo usuario</Link></li> : ""
                             }
                             <li><Link to={"/runner"}>Runners</Link></li>
 
@@ -26,7 +26,7 @@ export const NavBar = () => {
                     </div>
                 </div>
                 <div className="navbar-center">
-                    <Link to={"/"} className="btn btn-ghost normal-case text-white text-xl">{user.username}</Link>
+                    <Link to={"/"} className="btn btn-ghost normal-case text-white text-xl">{user?.username}</Link>
                 </div>
                 <div className="navbar-end">
                     <button type="button" className="btn" onClick={startLogout}>
