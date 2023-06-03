@@ -74,7 +74,7 @@ export const FormCheck = () => {
       <BasicTemplate />
       <main className="container mx-auto">
         <div className="mt-5 mb-10 p-4 overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
-          <form action="" className="grid grid-cols-1 md:grid-cols-2 gap-8" onSubmit={onSubmitForm}>
+          <form action="" aria-label="formCheck" className="grid grid-cols-1 md:grid-cols-2 gap-8" onSubmit={onSubmitForm}>
             <div>
               <div className="relative flex flex-wrap gap-2 items-center">
                 <label
