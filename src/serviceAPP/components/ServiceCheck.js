@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { useAuthStore, useServiceStore } from "../../hooks";
 import { useEffect, useState } from "react";
-import { formatDate } from "../../helpers";
+import { formatDate, getEnvVariables } from "../../helpers";
 import { BasicTemplate } from "./BasicTemplate";
 import Swal from "sweetalert2";
 import { ChartCheck } from "./ChartCheck";
@@ -136,7 +136,10 @@ export const ServiceCheck = () => {
                                     <input type="datetime-local" min={dateAfter} onChange={handleChangeDateTimeBefore} />
                                 </label> */}
                             </div>
-                            <ChartCheck />
+                            {
+                                getEnvVariables().REACT_APP_MODE !== 'test' ? <ChartCheck /> : null
+                            }
+
                             <div className="my-6 flex justify-end items-end btn-group">
                                 {
                                     user.username === "prueba_su" ? (<Link

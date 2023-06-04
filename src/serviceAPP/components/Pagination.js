@@ -17,7 +17,7 @@ export const Pagination = () => {
                     <li>
                         <button
                             onClick={onPrevPageLists}
-                            aria-label="Goto Page 1"
+                            aria-label="Goto prev Page"
                             className="inline-flex h-10 items-center justify-center gap-4 stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-blue-50 hover:stroke-blue-500 hover:text-blue-500 focus:bg-blue-50 focus:stroke-blue-600 focus:text-blue-600 focus-visible:outline-none"
                         >
                             <span className="order-2 md:sr-only">Prev</span>
@@ -107,7 +107,7 @@ export const Pagination = () => {
                     <li>
                         <button
                             onClick={onNextPageLists}
-                            aria-label="Goto Page 4"
+                            aria-label="Goto next Page"
                             className="inline-flex h-10 items-center justify-center gap-4 stroke-slate-700 px-4 text-sm font-medium text-slate-700 transition duration-300 hover:bg-blue-50 hover:stroke-blue-500 hover:text-blue-500 focus:bg-blue-50 focus:stroke-blue-600 focus:text-blue-600 focus-visible:outline-none"
                         >
                             <span className="md:sr-only">Next</span>
